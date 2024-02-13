@@ -44,7 +44,7 @@ jobs:
              -f "./automation_integration_demo/cucumber-selenium/target/cucumber-results.xml"
 # Invoke jobs via workflows
 workflows:
-  automation-integration-testrail-demo: # This is the name of the workflow, feel free to change it to better match your workflow.
+  automation-integration-testrail-demo: automation-integration-testrail-demo # This is the name of the workflow, feel free to change it to better match your workflow.
     jobs:
       - build-and-test-junit-selenium-cucumber
       - install-trcli-and-parse-results-junit-selenium:
