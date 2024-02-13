@@ -31,7 +31,8 @@ jobs:
           at: ./automation_integration_demo
       - run:
           name: Install TR CLI and upload the test results to TestRail
-          command: echo $TESTRAIL_INSTANCE_URL
+          command: |
+            pip install trcli
 # Invoke jobs via workflows
 workflows:
   automation-testrail-demo:
