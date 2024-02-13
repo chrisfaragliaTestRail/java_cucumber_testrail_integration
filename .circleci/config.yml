@@ -37,8 +37,8 @@ jobs:
             trcli -y \
              -h $TESTRAIL_INSTANCE_URL \
              --project "Demo Test" \
-             -u $TESTRAIL_USERNAME \
-             -p $TESTRAIL_PASSWORD \
+             --username $TESTRAIL_USERNAME \
+             --password $TESTRAIL_PASSWORD \
              parse_junit \
              --title "Automated JUnit Selenium Tests from CircleCI Workflow" \
              --run-description $CIRCLE_BUILD_URL \
