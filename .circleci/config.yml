@@ -22,7 +22,7 @@ jobs:
       - persist_to_workspace:
           root: ./
           paths:
-            - automation_integration_demo/cucumber-selenium/target/cucumber-results.xml
+            - ./cucumber-selenium/target/cucumber-results.xml
   install-trcli-and-parse-results-junit-selenium:
     docker:
       - image: cimg/python:3.11
