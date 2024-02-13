@@ -35,7 +35,7 @@ jobs:
             pip install trcli
             trcli -y \
              -h $TESTRAIL_INSTANCE_URL \
-             --project "Examples CircleCI" \
+             --project "Demo Test" \
              -u $TESTRAIL_USERNAME \
              -p $TESTRAIL_PASSWORD \
              parse_junit \
@@ -44,7 +44,7 @@ jobs:
              -f "./automation_integration_demo/cucumber-selenium/target/cucumber-results.xml"
 # Invoke jobs via workflows
 workflows:
-  automation-testrail-demo: # This is the name of the workflow, feel free to change it to better match your workflow.
+  automation-testrail-demo:
     jobs:
       - build-and-test-junit-selenium-cucumber
       - install-trcli-and-parse-results-junit-selenium:
