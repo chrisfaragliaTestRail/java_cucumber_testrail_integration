@@ -3,7 +3,7 @@
 version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.4.1
-working_directory: ~/automation-framework-integration
+working_directory: ~/automation_integration_demo
 jobs:
   build-and-test-junit-selenium-cucumber:
     docker:
@@ -20,7 +20,7 @@ jobs:
             cd cucumber-selenium
             mvn clean compile test
       - persist_to_workspace:
-          root: ./
+          root: ./automation_integration_demo
           paths:
             - automation_integration_demo/cucumber-selenium/target/cucumber-results.xml
   install-trcli-and-parse-results-junit-selenium:
@@ -28,7 +28,7 @@ jobs:
       - image: cimg/python:3.11
     steps:
       - attach_workspace:
-          at: ./automation-framework-integration
+          at: ./automation_integration_demo
       - run:
           name: Install TR CLI and upload the test results to TestRail
           command: |
@@ -44,7 +44,7 @@ jobs:
              -f "./automation_integration_demo/cucumber-selenium/target/cucumber-results.xml"
 # Invoke jobs via workflows
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+  automation-testrail-demo: # This is the name of the workflow, feel free to change it to better match your workflow.
     jobs:
       - build-and-test-junit-selenium-cucumber
       - install-trcli-and-parse-results-junit-selenium:
