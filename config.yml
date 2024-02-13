@@ -20,7 +20,7 @@ jobs:
             cd cucumber-selenium
             mvn clean compile test
       - persist_to_workspace:
-          root: ./
+          root: ./automation_integration_demo
           paths:
             - automation_integration_demo/cucumber-selenium/target/cucumber-results.xml
   install-trcli-and-parse-results-junit-selenium:
