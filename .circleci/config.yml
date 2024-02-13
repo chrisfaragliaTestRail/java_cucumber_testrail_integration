@@ -32,18 +32,7 @@ jobs:
       - run:
           name: Install TR CLI and upload the test results to TestRail
           command: |
-            pip install trcli
-            trcli
-            echo "$TESTRAIL_INSTANCE_URL"
-            trcli -y \
-             -h $TESTRAIL_INSTANCE_URL \
-             --project "Demo Test" \
-             --username $TESTRAIL_USERNAME \
-             --password $TESTRAIL_PASSWORD \
-             parse_junit \
-             --title "Automated JUnit Selenium Tests from CircleCI Workflow" \
-             --run-description $CIRCLE_BUILD_URL \
-             -f "./automation_integration_demo/cucumber-selenium/target/cucumber-results.xml"
+            echo "$TESTRAIL_INSTANCE_URL" 
 # Invoke jobs via workflows
 workflows:
   automation-testrail-demo:
