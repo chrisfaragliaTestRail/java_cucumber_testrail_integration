@@ -34,6 +34,7 @@ jobs:
           command: |
             pip install trcli
             trcli
+            echo "$TESTRAIL_INSTANCE_URL"
             trcli -y \
              -h $TESTRAIL_INSTANCE_URL \
              --project "Demo Test" \
