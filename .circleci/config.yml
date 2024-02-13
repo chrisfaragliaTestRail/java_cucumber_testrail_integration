@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Install TR CLI and upload the test results to TestRail
           command: |
-            echo "$TESTRAIL_INSTANCE_URL" 
+            echo """$TESTRAIL_INSTANCE_URL"""
 # Invoke jobs via workflows
 workflows:
   automation-testrail-demo:
