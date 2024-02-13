@@ -33,6 +33,7 @@ jobs:
           name: Install TR CLI and upload the test results to TestRail
           command: |
             pip install trcli
+            trcli
             trcli -y \
              -h $TESTRAIL_INSTANCE_URL \
              --project "Demo Test" \
