@@ -3,7 +3,7 @@
 version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.4.1
-working_directory: ~/automation-framework-integration
+working_directory: ~/automation_integration_demo
 jobs:
   build-and-test-junit-selenium-cucumber:
     docker:
@@ -28,7 +28,7 @@ jobs:
       - image: cimg/python:3.11
     steps:
       - attach_workspace:
-          at: ./automation-framework-integration
+          at: ./automation_integration_demo
       - run:
           name: Install TR CLI and upload the test results to TestRail
           command: |
