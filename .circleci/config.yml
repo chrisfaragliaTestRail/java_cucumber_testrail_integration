@@ -13,10 +13,19 @@ jobs: # a collection of steps
           path: ~/automation_integration_demo
  
       - run:
-        name: Build and run the Cucumber Selenium tests
-        command: |
-          cd cucumber-selenium
-          mvn clean compile test
+          name: Build and run the Cucumber Selenium tests
+          command: |
+            cd cucumber-selenium
+            mvn clean compile test
  
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
           path: ./cucumber-selenium/target/cucumber-results.xml
+ 
+      - run:
+          name: Install Python3 and TRCLI then upload the test results to TestRail
+          command: |
+            sudo add-apt-repository ppa:deadsnakes/ppa
+            sudo apt update
+            sudo apt install python3.11
+            pip install trcli
+            trcli -y -h $TESTRAIL_INSTANCE_URL --username $TESTRAIL_USERNAME --password $TESTRAIL_PASSWORD parse_junit --title "Automated Cucumber Selenium Tests from CircleCI Workflow" --run-description $CIRCLE_BUILD_URL -f "./automation_integration_demo/cucumber-selenium/target/cucumber-results.xml
