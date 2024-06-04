@@ -13,10 +13,10 @@ jobs: # a collection of steps
           path: ~/automation_integration_demo
  
       - run:
-        name: Build and run the Cucumber Selenium tests
-        command: |
-          cd cucumber-selenium
-          mvn clean compile test
+          name: Build and run the Cucumber Selenium tests
+          command: |
+            cd cucumber-selenium
+            mvn clean compile test
  
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
           path: ./cucumber-selenium/target/cucumber-results.xml
