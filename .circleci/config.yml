@@ -24,6 +24,7 @@ jobs: # a collection of steps
       - run:
           name: Install Python3 and TRCLI then upload the test results to TestRail
           command: |
+            sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E88979FB9B30ACF2
             sudo apt update
             sudo apt install python3
             sudo apt install python3-pip
