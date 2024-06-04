@@ -10,7 +10,7 @@ jobs:
       - image: cimg/openjdk:15.0
     steps:
       - browser-tools/install-browser-tools:
-          chrome-version: 125.0.6422.141
+          chrome-version: 114.0.5735.90
       # Checkout the code as the first step.
       - checkout
       # Build and run the tests
