@@ -34,7 +34,7 @@ jobs: # a collection of steps
             -u $TESTRAIL_USERNAME \
             -p "$TESTRAIL_PASSWORD" \
             parse_junit \
-            -f "./automation_integration_demo/cucumber-selenium/target/cucumber-results.xml" \
+            -f "./cucumber-selenium/target/cucumber-results.xml" \
             --title "Automated Cucumber Selenium Tests from CircleCI Workflow" \
             --run-description "$CIRCLE_BUILD_URL"
             
