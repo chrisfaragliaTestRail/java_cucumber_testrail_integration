@@ -24,10 +24,6 @@ jobs: # a collection of steps
       - run:
           name: Install Python3 and TRCLI then upload the test results to TestRail
           command: |
-            sudo apt-get clean
-            sudo apt-get update
-            sudo apt-key adv --keyserver keys.gnupg.net --recv-keys E88979FB9B30ACF2
-            sudo apt-get update
             sudo apt install python3
             pip install trcli
             trcli -y -h $TESTRAIL_INSTANCE_URL --username $TESTRAIL_USERNAME --password $TESTRAIL_PASSWORD parse_junit --title "Automated Cucumber Selenium Tests from CircleCI Workflow" --run-description $CIRCLE_BUILD_URL -f "./automation_integration_demo/cucumber-selenium/target/cucumber-results.xml
