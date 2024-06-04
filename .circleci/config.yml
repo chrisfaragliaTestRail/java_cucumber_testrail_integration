@@ -25,9 +25,6 @@ jobs: # a collection of steps
           name: Install Python3 and TRCLI then upload the test results to TestRail
           command: |
             sudo apt-get clean
-            sudo mv /var/lib/apt/lists /tmp
-            sudo mkdir -p /var/lib/apt/lists/partial
-            sudo apt-get clean
             sudo apt-get update
             sudo apt install python3
             pip install trcli
