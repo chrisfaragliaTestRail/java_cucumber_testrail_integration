@@ -15,6 +15,15 @@ jobs:
             sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
             sudo apt-get update
             sudo apt-get install google-chrome-stable
+        - run:
+            name: Build and run the Cucumber Selenium tests
+            command: |
+              cd cucumber-selenium
+              mvn clean compile test
+            - persist_to_workspace:
+                root: ./
+                paths:
+                  - ./cucumber-selenium/target/cucumber-results.xml
   install-trcli-and-parse-results-junit-selenium:
     docker:
       - image: cimg/python:3.11
@@ -24,7 +33,7 @@ jobs:
       - run:
           name: Install TR CLI and upload the test results to TestRail
           command: |
-            pip install --force-reinstall -v "trcli==1.6.1"
+            pip install trcli
             trcli -y -h $TESTRAIL_INSTANCE_URL --username $TESTRAIL_USERNAME --password $TESTRAIL_PASSWORD parse_junit --title "Automated JUnit Selenium Tests from CircleCI Workflow" --run-description $CIRCLE_BUILD_URL -f "./automation_integration_demo/cucumber-selenium/target/cucumber-results.xml"
 # Invoke jobs via workflows
 workflows:
