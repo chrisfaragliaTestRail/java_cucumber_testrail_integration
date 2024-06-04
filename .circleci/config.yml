@@ -28,4 +28,4 @@ jobs: # a collection of steps
             sudo apt update
             sudo apt install python3-pip
             pip install trcli
-            trcli -y -h $TESTRAIL_INSTANCE_URL --username $TESTRAIL_USERNAME --password $TESTRAIL_PASSWORD parse_junit --title "Automated Cucumber Selenium Tests from CircleCI Workflow" --run-description $CIRCLE_BUILD_URL -f "./automation_integration_demo/cucumber-selenium/target/cucumber-results.xml
+            trcli -y -h $TESTRAIL_INSTANCE_URL --username $TESTRAIL_USERNAME --password $TESTRAIL_PASSWORD parse_junit --title "Automated Cucumber Selenium Tests from CircleCI Workflow" --run-description $CIRCLE_BUILD_URL -f "./automation_integration_demo/cucumber-selenium/target/cucumber-results.xml"
