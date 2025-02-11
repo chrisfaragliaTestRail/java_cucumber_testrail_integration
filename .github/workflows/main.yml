@@ -1,0 +1,50 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+name: TRCLI Java Selenium Demo
+
+env:
+  TESTRAIL_USER: chris.faraglia@gurock.com
+  TESTRAIL_URL: https://testrailsademo.testrail.io/
+  PROJECT_NAME: TRPD Test Demo
+
+jobs:
+
+  Tests:
+    name: Execute Selenium Tests
+    runs-on: ubuntu-latest
+    env:
+      WORKING_DIR: ./
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: 'Set up JDK 8'
+        uses: actions/setup-java@v3
+        with:
+          java-version: 8
+          distribution: temurin
+      - name: Execute Selenium Tests
+        working-directory: ${{ env.WORKING_DIR }}
+        continue-on-error: true
+        run: mvn clean compile test
+      - name: Execute TestRail CLI to Upload Results
+        working-directory: ${{ env.WORKING_DIR }}
+        run: |
+          pip install trcli
+          trcli -y \
+            -h ${{ env.TESTRAIL_URL }} \
+            --project "${{ env.PROJECT_NAME }}" \
+            -u ${{ env.TESTRAIL_USER }} \
+            -p "${{ secrets.TESTRAIL_USER_PW }}" \
+            parse_junit \
+            -f "target/TEST-junit-jupiter.xml" \
+            --title "Automation Demo - Merge Develop Smoke Tests" \
+            --run-description "GitHub workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
