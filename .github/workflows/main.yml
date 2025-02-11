@@ -22,7 +22,7 @@ jobs:
     name: Execute Selenium Tests
     runs-on: ubuntu-latest
     env:
-      WORKING_DIR: ./
+      WORKING_DIR: ./cucumber-selenium
     steps:
       - name: Checkout
         uses: actions/checkout@v3
