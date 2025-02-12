@@ -45,6 +45,6 @@ jobs:
             -u ${{ env.TESTRAIL_USER }} \
             -p "${{ secrets.TESTRAIL_USER_PW }}" \
             parse_junit \
-            -f "./target/TEST-junit-jupiter.xml" \
+            -f "target/surefire-reports/TEST-com.idera.testrail.tests.HomePageTest.xml" \
             --title "Automation Demo - Merge Develop Smoke Tests" \
             --run-description "GitHub workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
